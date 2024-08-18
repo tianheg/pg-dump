@@ -6,6 +6,9 @@ echo "::group::pg-dump"
 
 echo "Checking if the output directory exists..."
 
+# Update INPUT_PATH to include the current date
+INPUT_PATH="$(dirname "$INPUT_PATH")/backup-$(date +%Y-%m-%d).sql"
+
 if [ ! -d "$(dirname "$INPUT_PATH")" ]; then
     echo "The output directory does not exist. Creating it..."
     mkdir -p "$(dirname "$INPUT_PATH")"
